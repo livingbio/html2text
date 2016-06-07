@@ -441,6 +441,12 @@ class HTML2Text(HTMLParser.HTMLParser):
                                 self.a.append(a)
                             self.o("][" + str(a['count']) + "]")
 
+        # handle iframe
+        if tag == "iframe" and start:
+            if 'src' in attrs and 'youtube' in attrs['src']:
+                self.o('video: %s' % attrs['src'])
+
+
         if tag == "img" and start and not self.ignore_images:
             if 'src' in attrs:
                 if not self.images_to_alt:
