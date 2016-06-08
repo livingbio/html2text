@@ -13,6 +13,8 @@ except ImportError:  # pragma: no cover
 
 from html2text.compat import urlparse, HTMLParser
 from html2text import config
+from html2text.links import youtube_id
+
 
 from html2text.utils import (
     name2cp,
@@ -444,8 +446,8 @@ class HTML2Text(HTMLParser.HTMLParser):
         # handle iframe
         if tag == "iframe" and start:
             if 'src' in attrs and 'youtube' in attrs['src']:
-                self.o('video: %s' % attrs['src'])
-
+                _id = youtube_id(attrs['src'])
+                self.o('[![IMAGE ALT TEXT](http://img.youtube.com/vi/%s/0.jpg)](http://www.youtube.com/watch?v=%s "Video Title"))' % (_id, _id))
 
         if tag == "img" and start and not self.ignore_images:
             if 'src' in attrs:
