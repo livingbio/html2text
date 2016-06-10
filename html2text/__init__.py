@@ -450,6 +450,9 @@ class HTML2Text(HTMLParser.HTMLParser):
                 self.o('[![IMAGE ALT TEXT](http://img.youtube.com/vi/%s/0.jpg)](http://www.youtube.com/watch?v=%s "Video Title"))' % (_id, _id))
 
         if tag == "img" and start and not self.ignore_images:
+            if 'data-src' in attrs:
+                attrs['src'] = attrs['data-src']
+
             if 'src' in attrs:
                 if not self.images_to_alt:
                     attrs['href'] = attrs['src']
