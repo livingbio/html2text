@@ -447,7 +447,7 @@ class HTML2Text(HTMLParser.HTMLParser):
         if tag == "iframe" and start:
             if 'src' in attrs and 'youtube' in attrs['src']:
                 _id = youtube_id(attrs['src'])
-                self.o('[![IMAGE ALT TEXT](http://img.youtube.com/vi/%s/0.jpg)](http://www.youtube.com/watch?v=%s "Video Title")' % (_id, _id))
+                self.o('[![IT IS VIDEO](http://img.youtube.com/vi/%s/0.jpg)](http://www.youtube.com/watch?v=%s)' % (_id, _id))
 
         if tag == "img" and start and not self.ignore_images:
             if 'data-src' in attrs:
